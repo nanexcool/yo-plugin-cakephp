@@ -1,12 +1,12 @@
 # Yo plugin for CakePHP
 
-This CakePHP plugin features a simple component to send YOs from your controllers and a behavior that you can attach to models.
+This CakePHP plugin features a simple component to send Yos from your controllers and a behavior that you can attach to your models.
 
 Get your API Key at http://dev.justyo.co/
 
 ## Requirements
 
-PHP 5.2 and up with CURL
+PHP >= 5.2 with CURL
 
 CakePHP 2 and up
 
@@ -33,7 +33,7 @@ Add the Yo Component to a controller, or to `AppController` to use it in every c
 
 Call `$this->Yo->all()` to send a YO to everyone, or `$this->Yo->user('USERNAME')` to send a YO to USERNAME.
 
-## Example
+Check the example below
 
 ```php
 class UsersController extends AppController {
@@ -42,21 +42,23 @@ class UsersController extends AppController {
     public $components = array('Yo.Yo');
 
     public function index() {
-    	// send a YO to everyone
+    	// send a Yo to everyone
     	$this->Yo->all();
 
-    	// send a YO to user USERNAME
+    	// send a Yo to user USERNAME
     	$this->Yo->user('USERNAME');
     }
 
 }
 ```
 
-### Using yo in a model
+### Using Yo in a model
 
 If you want to get a Yo whenever a model is created, updated or deleted use the behavior included.
 
 In the model you care about add `$actsAs = array('Yo.Yo')`. By default it will Yo only when a record is created. If you care about updates and deletes you'll need to modify the options.
+
+By default the behavior sends a Yo using `$this->Yo->all()`. If you want to send to only one user, modify the setting when adding the behavior in `$actsAs`.
 
 Check the example below
 
@@ -69,7 +71,7 @@ class User extends AppModel {
 			'afterSave' => true,
 			'afterUpdate' => false,
 			'afterDelete' => false,
-			'username' => ''
+			'username' => '' // set a username so it doesn't send to everyone
 		)
 	);
 }
