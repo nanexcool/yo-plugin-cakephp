@@ -24,33 +24,8 @@
  * THE SOFTWARE.
  */
 
-App::uses('YoAppController', 'Yo.Controller');
+App::uses('AppController', 'Controller');
 
-class YoController extends YoAppController {
+class YoAppController extends AppController {
     
-    public $components = array('Yo.Yo');
-    
-    public function beforeFilter() {
-        parent::beforeFilter();
-        
-        $this->Auth->allow();
-    }
-    
-    public function index() {
-        
-    }
-    
-    public function getSubscribers() {
-        $this->autoRender = false;
-        if (!$this->request->is('ajax')) {
-            return;
-        }
-        $subs = Cache::read('Yo.subs');
-        if ($subs !== false) {
-            return $subs;
-        }
-        $subs = $this->Yo->subscribers();
-        Cache::write('Yo.subs', $subs);
-        return $subs;
-    }
 }

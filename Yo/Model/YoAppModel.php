@@ -24,33 +24,12 @@
  * THE SOFTWARE.
  */
 
-App::uses('YoAppController', 'Yo.Controller');
+App::uses('AppModel', 'Model');
 
-class YoController extends YoAppController {
+/**
+ * CakePHP Yo
+ * @author Mariano Conti
+ */
+class YoAppModel extends AppModel {
     
-    public $components = array('Yo.Yo');
-    
-    public function beforeFilter() {
-        parent::beforeFilter();
-        
-        $this->Auth->allow();
-    }
-    
-    public function index() {
-        
-    }
-    
-    public function getSubscribers() {
-        $this->autoRender = false;
-        if (!$this->request->is('ajax')) {
-            return;
-        }
-        $subs = Cache::read('Yo.subs');
-        if ($subs !== false) {
-            return $subs;
-        }
-        $subs = $this->Yo->subscribers();
-        Cache::write('Yo.subs', $subs);
-        return $subs;
-    }
 }

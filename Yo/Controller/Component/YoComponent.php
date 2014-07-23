@@ -25,87 +25,30 @@
  */
 
 App::uses('Component', 'Controller');
+App::uses('YoDispatcher', 'Yo.Lib');
 
 class YoComponent extends Component {
 
-    protected $_apiKey;
-    public $debug = false;
-    private $urls = array(
-        'all' => 'http://api.justyo.co/yoall/',
-        'user' => 'http://api.justyo.co/yo/',
-        'subscribers' => 'http://api.justyo.co/subscribers_count/'
-    );
-
+    protected $_yo;
+    
     public function __construct(\ComponentCollection $collection, $settings = array()) {
         parent::__construct($collection, $settings);
 
-        Configure::load('Yo.config', 'default', false);
-        $this->_apiKey = Configure::read('Yo.apiKey');
-        if ($this->_apiKey === 'YOUR_API_KEY') {
-            throw new InternalErrorException('Missing Yo API key. See Plugin/Yo/Config/config.php');
-        }
+        $this->_yo = new YoDispatcher();
     }
 
     public function user($username) {
         if ($username != '') {
-            $this->processRequest($username);
+            $this->_yo->user($username);
         }
     }
 
     public function all() {
-        $this->processRequest();
+        $this->_yo->all();
     }
 
     public function subscribers() {
-        $url = $this->urls['subscribers'];
-
-        $url .= '?api_token=' . $this->_apiKey;
-
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 10,
-        );
-
-        $curl = curl_init();
-        curl_setopt_array($curl, $options);
-        $result = curl_exec($curl);
-        curl_close($curl);
-
-        return $result;
+        return $this->_yo->subscribers();
     }
-
-    private function processRequest($username = '') {
-        $postFields = array(
-            'api_token' => $this->_apiKey
-        );
-
-        $url = $this->urls['all'];
-
-        if ($username != '') {
-            $postFields['username'] = $username;
-            $url = $this->urls['user'];
-        }
-
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 10,
-            //CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $postFields
-        );
-
-        $result = '';
-
-        if (!$this->debug) {
-            $curl = curl_init();
-            curl_setopt_array($curl, $options);
-            $result = curl_exec($curl);
-            curl_close($curl);
-        }
-
-        return $result;
-    }
-
+    
 }
