@@ -2,6 +2,8 @@
 
 This CakePHP plugin features a simple component to send YOs from your controllers.
 
+Get your API Key at http://dev.justyo.co/
+
 ## Requirements
 
 PHP 5 with CURL
@@ -12,7 +14,16 @@ CakePHP 2 and up
 
 Copy `Yo` Folder to your `app/Plugin` directory.
 
+Load plugin in `app/Config/bootstrap.php`
+
+```
+CakePlugin::loadAll(); // Loads all plugins at once
+CakePlugin::load('Yo'); //Loads a single plugin
+```
+
 Enter your API Key in `Yo/Config/config.php`
+
+`Configure::write('Yo.apiKey', 'YOUR_API_KEY');`
 
 Add the Yo Component to a controller, or to `AppController` to use it in every controller.
 

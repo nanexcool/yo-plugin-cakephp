@@ -24,5 +24,7 @@
  * THE SOFTWARE.
  */
 
+// Get your API Key at http://dev.justyo.co/
+
 $config = '';
 Configure::write('Yo.apiKey', 'YOUR_API_KEY');
