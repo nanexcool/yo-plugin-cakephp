@@ -3,16 +3,17 @@
 This is a component that allows you to send a YO to a specific user or to everyone subscribed to you.
 
 ## Usage
-Copy `YO` Folder to your `app/Plugin` directory.
+Copy `Yo` Folder to your `app/Plugin` directory.
 
 Write your API Key in `Yo/Config/config.php`
 
-Add the Yo Component to a controller, or to AppController to use it in every controler.
+Add the Yo Component to a controller, or to AppController to use it in every controller.
 
 ```
-class MyController extends AppController {
+class AppController extends Controller {
 
-    public $components = array('Yo.Yo'); // plugin syntax, Yo plugin plus Yo component
+	// plugin syntax, Yo plugin . Yo component
+    public $components = array('Yo.Yo');
 
     public function index() {
     	// send a YO to everyone
