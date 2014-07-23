@@ -17,6 +17,6 @@
 		"source": "https://github.com/nanexcool/yo-plugin-cakephp"
 	},
 	"require": {
-		"php": ">=5"
+		"php": ">=5.2"
 	}
 }
