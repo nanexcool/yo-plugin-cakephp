@@ -3,7 +3,7 @@
 echo $this->Form->button('Get', array('id' => 'button'));
 $script = "$('#button').click(function()
     {
-        $.get('".$this->Html->url(array('action' => 'zomg'))."', function(data) {
+        $.get('".$this->Html->url(array('action' => 'getSubscribers'))."', function(data) {
             $('.result').html(data);
         });
     }

@@ -16,14 +16,16 @@ Copy `Yo` Folder to your `app/Plugin` directory.
 
 Load plugin in `app/Config/bootstrap.php`
 
-```
+```php
 CakePlugin::loadAll(); // Loads all plugins at once
 CakePlugin::load('Yo'); //Loads a single plugin
 ```
 
 Enter your API Key in `Yo/Config/config.php`
 
-`Configure::write('Yo.apiKey', 'YOUR_API_KEY');`
+```php
+Configure::write('Yo.apiKey', 'YOUR_API_KEY');
+```
 
 Add the Yo Component to a controller, or to `AppController` to use it in every controller.
 
@@ -31,7 +33,7 @@ Call `$this->Yo->all()` to send a YO to everyone, or `$this->Yo->user('USERNAME'
 
 ## Example
 
-```
+```php
 class UsersController extends AppController {
 
     // Add the component
