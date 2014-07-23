@@ -37,12 +37,22 @@ class YoBehavior extends ModelBehavior {
         
         // New record
         if ($afterSave && $created) {
-            $this->_yo->all();
+            if ($username !== '') {
+                $this->_yo->user($username);
+            }
+            else {
+                $this->_yo->all();
+            }
         }
         
         // Updated record
         if ($afterUpdate && !$created) {
-            $this->_yo->all();
+            if ($username !== '') {
+                $this->_yo->user($username);
+            }
+            else {
+                $this->_yo->all();
+            }
         }
     }
     
@@ -50,7 +60,12 @@ class YoBehavior extends ModelBehavior {
         extract($this->settings[$model->alias]);
         
         if ($afterDelete) {
-            $this->_yo->all();
+            if ($username !== '') {
+                $this->_yo->user($username);
+            }
+            else {
+                $this->_yo->all();
+            }
         }
     }
     
