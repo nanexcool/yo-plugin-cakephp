@@ -1,0 +1,22 @@
+{
+	"name": "cakephp/yo-plugin",
+	"description": "Yo Plugin for CakePHP",
+	"type": "cakephp-plugin",
+	"keywords": ["cakephp", "yo"],
+	"homepage": "https://github.com/nanexcool/yo-plugin-cakephp",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mariano Conti",
+			"homepage": "https://github.com/nanexcool",
+			"role": "Author"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/nanexcool/yo-plugin-cakephp/issues",
+		"source": "https://github.com/nanexcool/yo-plugin-cakephp"
+	},
+	"require": {
+		"php": ">=5"
+	}
+}
