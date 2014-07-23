@@ -1,5 +1,5 @@
 {
-	"name": "cakephp/yo-plugin",
+	"name": "nanexcool/cakephp-yo-plugin",
 	"description": "Yo Plugin for CakePHP",
 	"type": "cakephp-plugin",
 	"keywords": ["cakephp", "yo"],
