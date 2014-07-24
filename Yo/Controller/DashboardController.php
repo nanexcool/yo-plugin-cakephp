@@ -26,7 +26,7 @@
 
 App::uses('YoAppController', 'Yo.Controller');
 
-class YoController extends YoAppController {
+class DashboardController extends YoAppController {
     
     public $components = array('Yo.Yo');
     
@@ -38,6 +38,18 @@ class YoController extends YoAppController {
     
     public function index() {
         
+    }
+    
+    public function user() {
+        $this->autoRender = false;
+        if (!$this->request->is('ajax')) {
+            return;
+        }
+        if ($this->request['url']['username']) {
+            $res = $this->Yo->user($this->request['url']['username']);
+        }
+        
+        return $res;
     }
     
     public function getSubscribers() {
