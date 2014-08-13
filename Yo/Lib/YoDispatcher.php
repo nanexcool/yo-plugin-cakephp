@@ -8,7 +8,6 @@
 
 class YoDispatcher extends Object {
 
-    public $debug = false;
     protected $_apiKey;
     private $urls = array(
         'all' => 'http://api.justyo.co/yoall/',
@@ -24,14 +23,14 @@ class YoDispatcher extends Object {
         }
     }
     
-    public function user($username) {
+    public function user($username, $link = '') {
         if ($username != '') {
-            $this->processRequest($username);
+            $this->processRequest($username, $link);
         }
     }
 
-    public function all() {
-        $this->processRequest();
+    public function all($link = '') {
+        $this->processRequest($username = '', $link);
     }
 
     public function subscribers() {
@@ -60,7 +59,7 @@ class YoDispatcher extends Object {
         return false;
     }
 
-    private function processRequest($username = '') {
+    private function processRequest($username = '', $link = '') {
         $postFields = array(
             'api_token' => $this->_apiKey
         );
@@ -70,6 +69,10 @@ class YoDispatcher extends Object {
         if ($username != '') {
             $postFields['username'] = $username;
             $url = $this->urls['user'];
+        }
+
+        if ($link != '') {
+            $postFields['link'] = $link;
         }
 
         $options = array(
@@ -83,12 +86,10 @@ class YoDispatcher extends Object {
 
         $result = '';
 
-        if (!$this->debug) {
-            $curl = curl_init();
-            curl_setopt_array($curl, $options);
-            $result = curl_exec($curl);
-            curl_close($curl);
-        }
+        $curl = curl_init();
+        curl_setopt_array($curl, $options);
+        $result = curl_exec($curl);
+        curl_close($curl);
 
         return $result;
     }

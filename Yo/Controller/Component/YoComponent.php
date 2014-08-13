@@ -37,14 +37,14 @@ class YoComponent extends Component {
         $this->_yo = new YoDispatcher();
     }
 
-    public function user($username) {
+    public function user($username, $link = '') {
         if ($username != '') {
-            $this->_yo->user($username);
+            $this->_yo->user($username, $link);
         }
     }
 
-    public function all() {
-        $this->_yo->all();
+    public function all($link = '') {
+        $this->_yo->all($link);
     }
 
     public function subscribers() {
